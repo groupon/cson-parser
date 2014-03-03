@@ -1,0 +1,29 @@
+{
+  "name": "cson-safe",
+  "version": "0.0.0",
+  "description": "Safe parsing of CSON files",
+  "main": "lib/cson-safe.js",
+  "keywords": [ "cson", "parser" ],
+  "scripts": {
+    "test": "mocha test/**/*.coffee"
+  },
+  "author": {
+    "name": "Jan Krems",
+    "email": "<jan.krems@groupon.com>"
+  },
+  "devDependencies": {
+    "mocha": "~1.17.1",
+    "assertive": "~1.3.2",
+    "npub": "0.0.5"
+  },
+  "dependencies": {
+    "coffee-script-redux": "2.0.0-beta8"
+  },
+  "publishConfig": {
+    "license": {
+      "exclude": [
+        "test"
+      ]
+    }
+  }
+}
