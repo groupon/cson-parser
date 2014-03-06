@@ -28,5 +28,10 @@
         "test"
       ]
     }
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/groupon/cson-safe.git"
+  },
+  "bugs": "https://github.com/groupon/cson-safe/issues"
 }
