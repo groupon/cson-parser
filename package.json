@@ -1,9 +1,12 @@
 {
   "name": "cson-safe",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Safe parsing of CSON files",
   "main": "lib/cson-safe.js",
-  "keywords": [ "cson", "parser" ],
+  "keywords": [
+    "cson",
+    "parser"
+  ],
   "scripts": {
     "test": "mocha test/**/*.coffee"
   },
