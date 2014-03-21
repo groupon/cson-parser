@@ -85,6 +85,15 @@ describe 'CSON.parse', ->
       CSON.parse 'a: process.env.NODE_ENV'
     assert.equal 'Syntax error on line 1, column 4: Unexpected MemberAccessOp', err.message
 
+  it 'does not allow Infinity or -Infinity', ->
+    err = assert.throws ->
+      CSON.parse 'a: Infinity'
+    assert.equal 'Syntax error on line 1, column 4: Unexpected Identifier', err.message
+
+    err = assert.throws ->
+      CSON.parse 'a: -Infinity'
+    assert.equal 'Syntax error on line 1, column 5: Unexpected Identifier', err.message
+
   it 'does allow simple mathematical operations', ->
     compilesTo '(2 + 3) * 4', ((2 + 3) * 4)
     compilesTo '2 + 3 * 4', (2 + 3 * 4)
