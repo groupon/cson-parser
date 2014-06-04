@@ -20,7 +20,7 @@
     "npub": "0.0.5"
   },
   "dependencies": {
-    "coffee-script-redux": "2.0.0-beta8"
+    "coffee-script-redux": "2.0.0-beta9-dev"
   },
   "publishConfig": {
     "license": {
