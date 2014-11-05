@@ -1,6 +1,7 @@
 
 CSON = require '../'
 assert = require 'assertive'
+os = require 'os'
 
 compilesTo = (source, expected) ->
   assert.deepEqual expected, CSON.parse(source)
@@ -64,7 +65,7 @@ describe 'CSON.parse', ->
       string
       \"""
       """
-      'Some long\nstring'
+      "Some long#{os.EOL}string"
     )
 
   it 'does not allow using assignments', ->
