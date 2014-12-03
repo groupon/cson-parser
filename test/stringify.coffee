@@ -2,7 +2,7 @@
 { equal } = require 'assertive'
 
 CSON = require '../'
-cson = CSON.stringify
+cson = (obj, visitor, space = 2) -> CSON.stringify obj, visitor, space
 
 describe 'CSON.stringify', ->
   it 'handles null', ->

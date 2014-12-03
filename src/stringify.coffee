@@ -3,7 +3,6 @@
 # but we can at least make output look a lot nicer than JSON.stringify's.
 module.exports = (obj, visitor, indent) ->
   return undefined if typeof obj in ['undefined', 'function']
-  return JSON.stringify obj, visitor, indent if indent in [0, '']
 
   # pick an indent style much as JSON.stringify does, but limited to cson legals
   indent = switch typeof indent
@@ -11,10 +10,12 @@ module.exports = (obj, visitor, indent) ->
 
     when 'number'
       n = Math.min indent, 10
-      n = 1 unless n in [1..10] # do not bail on NaN and similar
+      n = 0 unless n in [1..10] # do not bail on NaN and similar
       Array(n + 1).join ' '
 
-    else '  '
+    else 0
+
+  return JSON.stringify obj, visitor, indent unless indent
 
   indentLine = (line) -> indent + line
 
