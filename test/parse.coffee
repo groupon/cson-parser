@@ -127,6 +127,26 @@ describe 'CSON.parse', ->
       { a: { b: { c: false }, d: 44, 3: 't' }, e: 'str' }
     )
 
+  it 'parses nested objects in arrays', ->
+    compilesTo(
+      """
+      o: 
+        [
+                  a: 'x'
+                  b: 'y'
+                  c: 
+                      d: 'z'
+            ,
+                  a: 'x'
+                  b: 'y'
+        ]
+      """
+      o: [
+        { a: 'x', b: 'y', c: { d: 'z' } }
+        { a: 'x', b: 'y' }
+      ]
+    )
+
   describe 'reviver functions', ->
     calls = expected = source = reviver = null
     beforeEach ->
