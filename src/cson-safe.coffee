@@ -31,6 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ###
 
 csr = require 'coffee-script-redux'
+stringify = require './stringify'
 CS = csr.Nodes
 
 find = (arr, testFn) ->
@@ -127,12 +128,6 @@ transformNode = (csNode) ->
     throw new SyntaxError syntaxErrorMessage(csNode, "Unexpected #{nodeTypeString csNode}")
 
   transform[1] csNode
-
-stringify = (obj, visitor, indent) ->
-  # Since CSON is a superset of JSON, we can just use the JSON serialization
-  # There are multiple ways to express the same thing in CSON, so trying to
-  # make `CSON.stringify(CSON.parse(str)) == str` work is doomed to fail
-  JSON.stringify obj, visitor, indent
 
 parse = (source, reviver) ->
   if reviver
