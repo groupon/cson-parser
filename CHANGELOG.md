@@ -1,3 +1,8 @@
+v1.0.0
+------
+* Switch to coffee-script for parsing - @jkrems
+  https://github.com/groupon/cson-safe/pull/10
+
 v0.2.0
 ------
 * A nicer CSON.stringify - @johan
