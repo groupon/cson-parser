@@ -1,20 +1,10 @@
-
-SRC = $(shell find src -name "*.coffee" -type f | sort)
-LIB = $(SRC:src/%.coffee=lib/%.js)
-
-COFFEE=node_modules/.bin/coffee --js
-
 all: clean setup test check-checkout-clean
 
-build: $(LIB)
-	@./node_modules/.bin/npub prep lib
+build:
+	@./node_modules/.bin/coffee -cbo lib src
 
 prepublish:
 	./node_modules/.bin/npub prep
-
-lib/%.js: src/%.coffee
-	dirname "$@" | xargs mkdir -p
-	$(COFFEE) <"$<" >"$@"
 
 clean:
 	rm -rf lib node_modules

@@ -5,7 +5,7 @@ Advantages of `cson-safe`:
 
 * A strict subset of CSON that allows only data
 * Interface is identical to JSON.{parse,stringify}
-* Free of `eval` and intermediate string representations
+* Does not run the code, free of intermediate string representations
 * Sane parse error messages with line/column
 
 In addition of pure data it allows for simple arithmetic expressions like
