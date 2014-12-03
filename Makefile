@@ -1,6 +1,7 @@
 all: clean setup test check-checkout-clean
 
 build:
+	@./node_modules/.bin/npub prep
 	@./node_modules/.bin/coffee -cbo lib src
 
 prepublish:
