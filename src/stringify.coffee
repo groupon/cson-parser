@@ -44,15 +44,17 @@ newlineWrap = (str) ->
 isObject = (obj) ->
   typeof obj == 'object' && obj != null && !Array.isArray(obj)
 
+# See:
+# http://www.ecma-international.org/ecma-262/5.1/#sec-15.12.3
 module.exports = (data, visitor, indent) ->
   return undefined if typeof data in ['undefined', 'function']
 
-  # pick an indent style much as JSON.stringify does, but limited to cson legals
+  # pick an indent style much as JSON.stringify does
   indent = switch typeof indent
     when 'string' then indent.slice 0, 10
 
     when 'number'
-      n = Math.min indent, 10
+      n = Math.min 10, Math.floor indent
       n = 0 unless n in [1..10] # do not bail on NaN and similar
       SPACES.slice(0, n)
 

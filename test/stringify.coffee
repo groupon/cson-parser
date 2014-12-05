@@ -76,9 +76,6 @@ describe 'CSON.stringify', ->
       ]
     }
 
-  it 'handles NaN as indent', ->
-    equal 'null', cson NaN
-
   it 'handles NaN and +/-Infinity like JSON.stringify does', ->
     equal 'null', cson NaN
     equal 'null', cson +Infinity
@@ -105,6 +102,12 @@ describe 'CSON.stringify', ->
       x:
       \t\t"super-tabby": true
     ''', cson { x: { 'super-tabby': yes } }, null, '\t\t'
+
+  it 'handles indentation by NaN', ->
+    equal '[1]', cson([ 1 ], null, NaN)
+
+  it 'handles indentation by floating point numbers', ->
+    equal '[\n   1\n]', cson([ 1 ], null, 3.9)
 
   it 'is bug compatible with JSON.stringify for non-whitespace indention', ->
     equal '''
