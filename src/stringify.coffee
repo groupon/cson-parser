@@ -36,7 +36,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 jsIdentifierRE = /^[a-z_$][a-z0-9_$]*$/i
 tripleQuotesRE = new RegExp "'''", 'g' # some syntax hilighters hate on /'''/g
 
-SPACES = Array(11).join ' ' # 10 spaces
+SPACES = '          ' # 10 spaces
 
 newlineWrap = (str) ->
   str and "\n#{ str }\n"
