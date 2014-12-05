@@ -48,23 +48,21 @@ describe 'CSON.stringify', ->
         {
           a: "str"
         }
+        {}
       ]
-    ''', cson [ [1], null, [], a: 'str' ]
+    ''', cson [ [1], null, [], a: 'str', {} ]
 
   it 'handles objects', ->
     equal '''
-      {
-        "": "empty"
-        "non\\nidentifier": true
-        default: false
-        nested: {
-          string: "too"
-        }
-        array: [
-          {}
-          []
-        ]
-      }
+      "": "empty"
+      "non\\nidentifier": true
+      default: false
+      nested:
+        string: "too"
+      array: [
+        {}
+        []
+      ]
     ''', cson {
       '': 'empty'
       "non\nidentifier": true
@@ -77,6 +75,9 @@ describe 'CSON.stringify', ->
         []
       ]
     }
+
+  it 'handles NaN as indent', ->
+    equal 'null', cson NaN
 
   it 'handles NaN and +/-Infinity like JSON.stringify does', ->
     equal 'null', cson NaN
@@ -95,28 +96,23 @@ describe 'CSON.stringify', ->
 
   it 'accepts no more than ten indentation steps, just like JSON.stringify', ->
     equal '''
-      {
+      x:
                 "don't": "be silly, will'ya?"
-      }
-    ''', cson {"don't": "be silly, will'ya?"}, null, Infinity
+    ''', cson { x: { "don't": "be silly, will'ya?" } }, null, Infinity
 
   it 'lets people that really want to indent with tabs', ->
     equal '''
-      {
+      x:
       \t\t"super-tabby": true
-      }
-    ''', cson {'super-tabby': yes}, null, '\t\t'
+    ''', cson { x: { 'super-tabby': yes } }, null, '\t\t'
 
   it 'is bug compatible with JSON.stringify for non-whitespace indention', ->
     equal '''
-      {
+      x:
       ecma-262strange: true
-      }
-    ''', cson {strange: yes}, null, 'ecma-262'
+    ''', cson { x: { strange: yes } }, null, 'ecma-262'
 
   it 'handles visitor functions', ->
     equal '''
-      {
-        keep: 1
-      }
+      keep: 1
     ''', cson {filter: 'me', keep: 1}, (k, v) -> v unless typeof v is 'string'

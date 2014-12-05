@@ -33,8 +33,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # There are multiple ways to express the same thing in CSON, so trying to
 # make `CSON.stringify(CSON.parse(str)) == str` work is doomed to fail
 # but we can at least make output look a lot nicer than JSON.stringify's.
-module.exports = (obj, visitor, indent) ->
-  return undefined if typeof obj in ['undefined', 'function']
+jsIdentifierRE = /^[a-z_$][a-z0-9_$]*$/i
+tripleQuotesRE = new RegExp "'''", 'g' # some syntax hilighters hate on /'''/g
+
+SPACES = Array(11).join ' ' # 10 spaces
+
+newlineWrap = (str) ->
+  str and "\n#{ str }\n"
+
+isObject = (obj) ->
+  typeof obj == 'object' && obj != null && !Array.isArray(obj)
+
+module.exports = (data, visitor, indent) ->
+  return undefined if typeof data in ['undefined', 'function']
 
   # pick an indent style much as JSON.stringify does, but limited to cson legals
   indent = switch typeof indent
@@ -43,59 +54,68 @@ module.exports = (obj, visitor, indent) ->
     when 'number'
       n = Math.min indent, 10
       n = 0 unless n in [1..10] # do not bail on NaN and similar
-      Array(n + 1).join ' '
+      SPACES.slice(0, n)
 
     else 0
 
-  return JSON.stringify obj, visitor, indent unless indent
+  return JSON.stringify data, visitor, indent unless indent
 
   indentLine = (line) -> indent + line
 
   indentLines = (str) ->
-    str and str.split('\n').map(indentLine).join('\n')
-
-  newlineWrap = (str) ->
-    str and "\n#{ str }\n"
-
-  jsIdentifierRE = /^[a-z_$][a-z0-9_$]*$/i
-  tripleQuotesRE = new RegExp "'''", 'g' # some syntax hilighters hate on /'''/g
+    return str if str == ''
+    str.split('\n').map(indentLine).join('\n')
 
   # have the native JSON serializer do visitor transforms & normalization for us
-  obj = JSON.parse JSON.stringify obj, visitor
+  normalized = JSON.parse JSON.stringify data, visitor
 
-  do serialize = (obj) ->
-    switch typeof obj
-      when 'boolean' then obj + ''
+  visitString = (str) ->
+    if str.indexOf('\n') == -1
+      JSON.stringify str
+    else
+      string = str.replace tripleQuotesRE, "\\'''"
+      "'''#{ newlineWrap indentLines string }'''"
+
+  visitArray = (arr) ->
+    items = arr.map (value) ->
+      serializedValue = visitNode value
+      if isObject value
+        "{#{ newlineWrap indentLines serializedValue }}"
+      else
+        serializedValue
+
+    array = items.join '\n'
+    "[#{ newlineWrap indentLines array }]"
+
+  visitObject = (obj) ->
+    keypairs = for key, value of obj
+      key = JSON.stringify key unless key.match jsIdentifierRE
+      serializedValue = visitNode value
+      if isObject value
+        if serializedValue == ''
+          "#{ key }: {}"
+        else
+          "#{ key }:\n#{ indentLines serializedValue }"
+      else
+        "#{ key }: #{ serializedValue }"
+
+    keypairs.join '\n'
+
+  visitNode = (node) ->
+    switch typeof node
+      when 'boolean' then "#{node}"
 
       when 'number'
-        if isFinite obj
-          obj + ''
-        else # NaN, Infinity and -Infinity
-          'null'
+        if isFinite node then "#{node}"
+        else 'null' # NaN, Infinity and -Infinity
 
-      when 'string'
-        if obj.indexOf('\n') is -1
-          JSON.stringify obj
-        else
-          string = obj.replace tripleQuotesRE, "\\'''"
-          string = newlineWrap indentLines string
-          "'''#{ string }'''"
+      when 'string' then visitString node
 
       when 'object'
-        if obj is null
-          'null'
+        if node == null then 'null'
+        else if Array.isArray(node) then visitArray(node)
+        else visitObject(node)
 
-        else if Array.isArray obj
-          array = obj.map(serialize).join '\n'
-          array = newlineWrap indentLines array
-          "[#{ array }]"
-
-        else
-          keypairs = for key, val of obj
-            key = JSON.stringify key unless key.match jsIdentifierRE
-            val = serialize val
-            "#{ key }: #{ val }"
-
-          object = keypairs.join '\n'
-          object = newlineWrap indentLines object
-          "{#{ object }}"
+  out = visitNode normalized
+  if out == '' then '{}' # the only thing that serializes to '' is an empty object
+  else out
