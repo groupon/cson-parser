@@ -46,6 +46,8 @@ syntaxErrorMessage = (csNode, msg) ->
   column = columnIdx + 1 if columnIdx?
   "Syntax error on line #{line}, column #{column}: #{msg}"
 
+# See:
+# http://www.ecma-international.org/ecma-262/5.1/#sec-15.12.2
 parse = (source, reviver = defaultReviver) ->
   nodeTransforms =
     Block: (node) ->
