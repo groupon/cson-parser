@@ -1,3 +1,8 @@
+v1.0.1
+------
+* Even nicer stringify with less noise - @jkrems
+  https://github.com/groupon/cson-safe/pull/13
+
 v1.0.0
 ------
 * Switch to coffee-script for parsing - @jkrems
