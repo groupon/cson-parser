@@ -1,3 +1,8 @@
+1.0.2
+-----
+* Upgrade npub - @abloom
+  https://github.com/groupon/cson-safe/pull/14
+
 v1.0.1
 ------
 * Even nicer stringify with less noise - @jkrems
