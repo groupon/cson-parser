@@ -8,7 +8,11 @@
     "parser"
   ],
   "scripts": {
-    "test": "mocha"
+    "build": "npub prep && coffee -cbo lib src",
+    "prepublish": "rm -rf lib && npm run build",
+    "pretest": "npm run build",
+    "test": "mocha",
+    "posttest": "npub verify"
   },
   "author": {
     "name": "Jan Krems",
@@ -17,7 +21,7 @@
   "devDependencies": {
     "assertive": "^1.4.0",
     "mocha": "^2.0.0",
-    "npub": "0.0.5"
+    "npub": "~0.5.1"
   },
   "dependencies": {
     "coffee-script": "^1.8.0"
