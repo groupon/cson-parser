@@ -7,6 +7,7 @@
     "cson",
     "parser"
   ],
+  "license": "BSD-2-Clause",
   "scripts": {
     "build": "npub prep && coffee -cbo lib src",
     "prepublish": "rm -rf lib && npm run build",
