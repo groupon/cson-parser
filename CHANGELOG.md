@@ -1,3 +1,8 @@
+1.0.3
+-----
+* Add license SPDX ID to package.json - @jkrems
+  https://github.com/groupon/cson-safe/pull/16
+
 1.0.2
 -----
 * Upgrade npub - @abloom
