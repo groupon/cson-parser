@@ -1,3 +1,8 @@
+1.0.4
+-----
+* Use `vm.runInThisContext` instead of eval - @jkrems
+  https://github.com/groupon/cson-safe/pull/18
+
 1.0.3
 -----
 * Add license SPDX ID to package.json - @jkrems
