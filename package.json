@@ -28,6 +28,7 @@
     "coffee-script": "^1.8.0"
   },
   "publishConfig": {
+    "registry": "https://registry.npmjs.org",
     "license": {
       "exclude": [
         "lib",
