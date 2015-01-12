@@ -30,6 +30,8 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ###
 
+{runInThisContext} = require 'vm'
+
 {nodes} = require 'coffee-script'
 
 defaultReviver = (key, value) -> value
@@ -45,6 +47,13 @@ syntaxErrorMessage = (csNode, msg) ->
   line = lineIdx + 1 if lineIdx?
   column = columnIdx + 1 if columnIdx?
   "Syntax error on line #{line}, column #{column}: #{msg}"
+
+parseStringLiteral = (literal) ->
+  # In theory this could be replaced by properly resolving
+  # escape sequences etc.
+  # We trust the coffee-script lexer to make sure it's just
+  # a strings and running it has no side effects.
+  runInThisContext literal
 
 # See:
 # http://www.ecma-international.org/ecma-262/5.1/#sec-15.12.2
@@ -69,7 +78,7 @@ parse = (source, reviver = defaultReviver) ->
       {value} = node
       try
         if value[0] == "'"
-          eval value # we trust the lexer here
+          parseStringLiteral value
         else
           JSON.parse value
       catch err
@@ -138,7 +147,7 @@ parse = (source, reviver = defaultReviver) ->
       when 'Value'
         {value} = csNode.base
         switch value[0]
-          when '\'' then eval value # we trust the lexer here
+          when '\'' then parseStringLiteral value
           when '"' then JSON.parse value
           else value
 
