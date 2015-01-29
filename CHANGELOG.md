@@ -1,3 +1,10 @@
+1.0.5
+-----
+* Be explicit about registry for publish - @jkrems
+  https://github.com/groupon/cson-safe/pull/19
+* Unify `''`/`""` handling, str.charAt(0) -> str[0] - @jkrems
+  https://github.com/groupon/cson-safe/pull/22
+
 1.0.4
 -----
 * Use `vm.runInThisContext` instead of eval - @jkrems
