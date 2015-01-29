@@ -77,10 +77,9 @@ parse = (source, reviver = defaultReviver) ->
     Literal: (node) ->
       {value} = node
       try
-        if value[0] == "'"
-          parseStringLiteral value
-        else
-          JSON.parse value
+        switch value.charAt 0
+          when "'", '"' then parseStringLiteral value
+          else JSON.parse value
       catch err
         throw new SyntaxError syntaxErrorMessage(node, err.message)
 
@@ -143,16 +142,13 @@ parse = (source, reviver = defaultReviver) ->
 
   transformKey = (csNode) ->
     type = nodeTypeString csNode
-    switch type
-      when 'Value'
-        {value} = csNode.base
-        switch value[0]
-          when '\'' then parseStringLiteral value
-          when '"' then JSON.parse value
-          else value
+    if type != 'Value'
+      throw new SyntaxError syntaxErrorMessage(csNode, "#{type} used as key")
 
-      else
-        throw new SyntaxError syntaxErrorMessage(csNode, "#{type} used as key")
+    {value} = csNode.base
+    switch value.charAt 0
+      when "'", '"' then parseStringLiteral value
+      else value
 
   transformNode = (csNode) ->
     type = nodeTypeString csNode

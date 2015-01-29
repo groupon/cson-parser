@@ -115,6 +115,9 @@ describe 'CSON.parse', ->
     compilesTo '8 >> 3', (8 >> 3)
     compilesTo '-9 >>> 2', (-9 >>> 2)
 
+  it.only 'allows hard tabs in strings', ->
+    compilesTo 'a: "x\ty"', a: 'x\ty'
+
   it 'parses nested objects', ->
     compilesTo(
       """
