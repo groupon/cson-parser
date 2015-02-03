@@ -1,7 +1,6 @@
-# cson-safe
+# cson-parser
 
-An alternative to [cson](https://github.com/bevry/cson).
-Advantages of `cson-safe`:
+A minimalistic CSON parser. Offers:
 
 * A strict subset of CSON that allows only data
 * Interface is identical to JSON.{parse,stringify}
@@ -20,19 +19,19 @@ cachedData:
 
 ## Install
 
-`npm install --save cson-safe`
+`npm install --save cson-parser`
 
 ## Usage
 
 ```coffee
-CSON = require 'cson-safe'
+CSON = require 'cson-parser'
 # This will print { a: '123' }
 console.log CSON.parse "a: '123'"
 ```
 
 ## High-level APIs
 
-`cson-safe` only offers basic parsing and serialization.
+`cson-parser` only offers basic parsing and serialization.
 But there are some great tools if you want more than that:
 
 * [`season`](https://www.npmjs.org/package/season),
@@ -48,7 +47,7 @@ But there are some great tools if you want more than that:
   parses [JSON Schema](http://json-schema.org) files written in CSON
 
 You can find more on the
-[npm website](https://preview.npmjs.com/browse/depended/cson-safe).
+[npm website](https://preview.npmjs.com/browse/depended/cson-parser).
 
 ## FAQ
 
