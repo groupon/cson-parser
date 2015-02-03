@@ -1,3 +1,8 @@
+1.0.6
+-----
+* Rename to cson-parser - @jkrems
+  https://github.com/groupon/cson-parser/pull/23
+
 1.0.5
 -----
 * Be explicit about registry for publish - @jkrems
