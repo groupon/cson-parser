@@ -1,8 +1,8 @@
 {
-  "name": "cson-safe",
+  "name": "cson-parser",
   "version": "1.0.5",
   "description": "Safe parsing of CSON files",
-  "main": "lib/cson-safe.js",
+  "main": "lib/cson-parser.js",
   "keywords": [
     "cson",
     "parser"
@@ -38,7 +38,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/groupon/cson-safe.git"
+    "url": "https://github.com/groupon/cson-parser.git"
   },
-  "bugs": "https://github.com/groupon/cson-safe/issues"
+  "bugs": "https://github.com/groupon/cson-parser/issues"
 }
