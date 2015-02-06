@@ -34,6 +34,7 @@ console.log CSON.parse "a: '123'"
 `cson-parser` only offers basic parsing and serialization.
 But there are some great tools if you want more than that:
 
+* [`CSON`](https://github.com/bevry/cson), provides file, coffeescript, javascript handling and a CLI
 * [`season`](https://www.npmjs.org/package/season),
   atom.io's CSON package.
   Includes CLI tool to convert CSON to JSON
