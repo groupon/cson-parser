@@ -1,3 +1,8 @@
+1.0.7
+-----
+* Added CSON package which now uses cson-parser - @balupton
+  https://github.com/groupon/cson-parser/pull/25
+
 1.0.6
 -----
 * Rename to cson-parser - @jkrems
