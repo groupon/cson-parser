@@ -1,3 +1,7 @@
+1.0.8
+-----
+* Run against iojs - @jkrems #27
+
 1.0.7
 -----
 * Added CSON package which now uses cson-parser - @balupton
