@@ -75,7 +75,9 @@ module.exports = (data, visitor, indent) ->
     if str.indexOf('\n') == -1
       JSON.stringify str
     else
-      string = str.replace tripleQuotesRE, "\\'''"
+      string = str
+        .replace /\\/g, '\\\\' # escape backslashes in source string
+        .replace tripleQuotesRE, "\\'''"
       "'''#{ newlineWrap indentLines string }'''"
 
   visitArray = (arr) ->
