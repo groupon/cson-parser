@@ -1,3 +1,10 @@
+1.0.9
+-----
+* Escape backslash in multi-line string - @jkrems
+  https://github.com/groupon/cson-parser/pull/35
+* Pin coffee-script version to 1.9.0 - @jkrems
+  https://github.com/groupon/cson-parser/pull/33
+
 1.0.8
 -----
 * Run against iojs - @jkrems #27
