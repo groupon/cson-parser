@@ -37,6 +37,12 @@ describe 'CSON.stringify', ->
       and I have a sneaky ''' in here, too
     """
 
+  it 'handles multi-line strings w/ backslash', ->
+    test = '\\\n\\'
+    expected = "'''\n  \\\\\n  \\\\\n'''"
+    equal test, CSON.parse(cson test)
+    equal expected, cson test
+
   it 'handles arrays', ->
     equal '''
       [
