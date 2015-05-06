@@ -93,10 +93,10 @@ module.exports = (data, visitor, indent) ->
       key = JSON.stringify key unless key.match jsIdentifierRE
       serializedValue = visitNode value, bracesRequired: !indent
       if indent
-        if isObject value
-          serializedValue = "\n#{ indentLines serializedValue }"
+        serializedValue = if isObject value
+          "\n#{ indentLines serializedValue }"
         else
-          serializedValue = " #{ serializedValue }"
+          " #{ serializedValue }"
       "#{ key }:#{ serializedValue }"
 
     if keypairs.length is 0
