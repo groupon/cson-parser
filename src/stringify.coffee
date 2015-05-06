@@ -60,8 +60,6 @@ module.exports = (data, visitor, indent) ->
 
     else 0
 
-  return JSON.stringify data, visitor, indent unless indent
-
   indentLine = (line) -> indent + line
 
   indentLines = (str) ->
@@ -72,7 +70,7 @@ module.exports = (data, visitor, indent) ->
   normalized = JSON.parse JSON.stringify data, visitor
 
   visitString = (str) ->
-    if str.indexOf('\n') == -1
+    if str.indexOf('\n') == -1 or !indent
       JSON.stringify str
     else
       string = str
@@ -81,31 +79,42 @@ module.exports = (data, visitor, indent) ->
       "'''#{ newlineWrap indentLines string }'''"
 
   visitArray = (arr) ->
-    items = arr.map (value) ->
-      serializedValue = visitNode value
-      if isObject value
-        "{#{ newlineWrap indentLines serializedValue }}"
-      else
-        serializedValue
+    items = arr.map (value) -> visitNode value, bracesRequired: true
 
-    array = items.join '\n'
-    "[#{ newlineWrap indentLines array }]"
+    serializedItems = if indent
+      newlineWrap indentLines items.join '\n'
+    else
+      items.join ','
 
-  visitObject = (obj) ->
+    "[#{serializedItems}]"
+
+  visitObject = (obj, {bracesRequired}) ->
     keypairs = for key, value of obj
       key = JSON.stringify key unless key.match jsIdentifierRE
-      serializedValue = visitNode value
-      if isObject value
-        if serializedValue == ''
-          "#{ key }: {}"
+      serializedValue = visitNode value, bracesRequired: !indent
+      if indent
+        if isObject value
+          serializedValue = "\n#{ indentLines serializedValue }"
         else
-          "#{ key }:\n#{ indentLines serializedValue }"
+          serializedValue = " #{ serializedValue }"
+      "#{ key }:#{ serializedValue }"
+
+    if keypairs.length is 0
+      '{}'
+    else if indent
+      serializedKeyPairs = keypairs.join '\n'
+      if bracesRequired
+        "{#{ newlineWrap indentLines serializedKeyPairs }}"
       else
-        "#{ key }: #{ serializedValue }"
+        serializedKeyPairs
+    else
+      serializedKeyPairs = keypairs.join ','
+      if bracesRequired
+        "{#{ serializedKeyPairs }}"
+      else
+        serializedKeyPairs
 
-    keypairs.join '\n'
-
-  visitNode = (node) ->
+  visitNode = (node, options = {}) ->
     switch typeof node
       when 'boolean' then "#{node}"
 
@@ -113,13 +122,11 @@ module.exports = (data, visitor, indent) ->
         if isFinite node then "#{node}"
         else 'null' # NaN, Infinity and -Infinity
 
-      when 'string' then visitString node
+      when 'string' then visitString node, options
 
       when 'object'
         if node == null then 'null'
-        else if Array.isArray(node) then visitArray(node)
-        else visitObject(node)
+        else if Array.isArray(node) then visitArray node, options
+        else visitObject node, options
 
-  out = visitNode normalized
-  if out == '' then '{}' # the only thing that serializes to '' is an empty object
-  else out
+  visitNode normalized

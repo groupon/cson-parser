@@ -37,6 +37,14 @@ describe 'CSON.stringify', ->
       and I have a sneaky ''' in here, too
     """
 
+  it 'handles multi-line strings (with 0 indentation)', ->
+    equal """
+    "I am your average multi-line string,\\nand I have a sneaky ''' in here, too"
+    """, cson """
+      I am your average multi-line string,
+      and I have a sneaky ''' in here, too
+    """, null, 0
+
   it 'handles multi-line strings w/ backslash', ->
     test = '\\\n\\'
     expected = "'''\n  \\\\\n  \\\\\n'''"
@@ -57,6 +65,11 @@ describe 'CSON.stringify', ->
         {}
       ]
     ''', cson [ [1], null, [], a: 'str', {} ]
+
+  it 'handles arrays (with 0 indentation)', ->
+    equal '''
+    [[1],null,[],{a:"str"},{}]
+    ''', cson [ [1], null, [], a: 'str', {} ], null, 0
 
   it 'handles objects', ->
     equal '''
@@ -82,6 +95,22 @@ describe 'CSON.stringify', ->
       ]
     }
 
+  it 'handles objects (with 0 indentation)', ->
+    equal '''
+    "":"empty","non\\nidentifier":true,default:false,nested:{string:"too"},array:[{},[]]
+    ''', cson {
+      '': 'empty'
+      "non\nidentifier": true
+      default: false
+      nested: {
+        string: 'too'
+      }
+      array: [
+        {}
+        []
+      ]
+    }, null, 0
+
   it 'handles NaN and +/-Infinity like JSON.stringify does', ->
     equal 'null', cson NaN
     equal 'null', cson +Infinity
@@ -92,10 +121,6 @@ describe 'CSON.stringify', ->
 
   it 'handles functions like JSON.stringify does', ->
     equal undefined, cson ->
-
-  it 'works just like JSON.stringify when asking for no indentation', ->
-    equal '{"zeroed":0}', cson zeroed: 0, null, 0
-    equal '{"empty":""}', cson empty: '', null, ''
 
   it 'accepts no more than ten indentation steps, just like JSON.stringify', ->
     equal '''
