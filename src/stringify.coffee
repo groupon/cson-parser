@@ -81,22 +81,24 @@ module.exports = (data, visitor, indent) ->
   visitArray = (arr) ->
     items = arr.map (value) -> visitNode value, bracesRequired: true
 
-    serializedItems = if indent
-      newlineWrap indentLines items.join '\n'
-    else
-      items.join ','
+    serializedItems =
+      if indent
+        newlineWrap indentLines items.join '\n'
+      else
+        items.join ','
 
-    "[#{serializedItems}]"
+    "[#{ serializedItems }]"
 
   visitObject = (obj, {bracesRequired}) ->
     keypairs = for key, value of obj
       key = JSON.stringify key unless key.match jsIdentifierRE
       serializedValue = visitNode value, bracesRequired: !indent
       if indent
-        serializedValue = if isObject value
-          "\n#{ indentLines serializedValue }"
-        else
-          " #{ serializedValue }"
+        serializedValue =
+          if isObject value
+            "\n#{ indentLines serializedValue }"
+          else
+            " #{ serializedValue }"
       "#{ key }:#{ serializedValue }"
 
     if keypairs.length is 0
