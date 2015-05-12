@@ -1,3 +1,10 @@
+1.1.0
+-----
+* Add fs-cson to readme - @charlierudolph
+  https://github.com/groupon/cson-parser/pull/39
+* Proper CSON single-line formatting - @charlierudolph
+  https://github.com/groupon/cson-parser/pull/37
+
 1.0.9
 -----
 * Escape backslash in multi-line string - @jkrems
