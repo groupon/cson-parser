@@ -76,6 +76,7 @@ describe 'CSON.stringify', ->
       "": "empty"
       "non\\nidentifier": true
       default: false
+      emptyObject: {}
       nested:
         string: "too"
       array: [
@@ -86,6 +87,7 @@ describe 'CSON.stringify', ->
       '': 'empty'
       "non\nidentifier": true
       default: false
+      emptyObject: {}
       nested: {
         string: 'too'
       }
