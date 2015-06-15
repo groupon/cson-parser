@@ -1,3 +1,8 @@
+1.1.1
+-----
+* Support key with empty object - @charlierudolph
+  https://github.com/groupon/cson-parser/pull/42
+
 1.1.0
 -----
 * Add fs-cson to readme - @charlierudolph
