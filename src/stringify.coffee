@@ -95,7 +95,7 @@ module.exports = (data, visitor, indent) ->
       serializedValue = visitNode value, bracesRequired: !indent
       if indent
         serializedValue =
-          if isObject value
+          if isObject(value) and Object.keys(value).length > 0
             "\n#{ indentLines serializedValue }"
           else
             " #{ serializedValue }"
