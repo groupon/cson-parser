@@ -25,7 +25,7 @@
     "npub": "^2.0.0"
   },
   "dependencies": {
-    "coffee-script": "1.9.0"
+    "coffee-script": "^1.9.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
