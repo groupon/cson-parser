@@ -1,3 +1,8 @@
+1.2.0
+-----
+* Use flexible coffee-script version - @jkrems
+  https://github.com/groupon/cson-parser/pull/47
+
 1.1.1
 -----
 * Support key with empty object - @charlierudolph
