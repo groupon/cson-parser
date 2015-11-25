@@ -1,3 +1,8 @@
+1.3.0
+-----
+* Add support for regular expressions - @jkrems
+  https://github.com/groupon/cson-parser/pull/49
+
 1.2.0
 -----
 * Use flexible coffee-script version - @jkrems
