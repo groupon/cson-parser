@@ -55,6 +55,13 @@ parseStringLiteral = (literal) ->
   # a strings and running it has no side effects.
   runInThisContext literal
 
+parseRegExpLiteral = (literal) ->
+  # In theory this could be replaced by properly resolving
+  # escape sequences etc.
+  # We trust the coffee-script lexer to make sure it's just
+  # a regular expression and running it has no side effects.
+  runInThisContext literal
+
 # See:
 # http://www.ecma-international.org/ecma-262/5.1/#sec-15.12.2
 parse = (source, reviver = defaultReviver) ->
@@ -79,6 +86,7 @@ parse = (source, reviver = defaultReviver) ->
       try
         switch value.charAt 0
           when "'", '"' then parseStringLiteral value
+          when '/' then parseRegExpLiteral value
           else JSON.parse value
       catch err
         throw new SyntaxError syntaxErrorMessage(node, err.message)
