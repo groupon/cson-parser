@@ -6,6 +6,7 @@ A minimalistic CSON parser. Offers:
 * Interface is identical to JSON.{parse,stringify}
 * Does not run the code, free of intermediate string representations
 * Sane parse error messages with line/column
+* Regular Expressions are considered data and will be accepted as well
 
 In addition of pure data it allows for simple arithmetic expressions like
 addition and multiplication.

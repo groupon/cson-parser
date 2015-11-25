@@ -118,6 +118,36 @@ describe 'CSON.parse', ->
   it 'allows hard tabs in strings', ->
     compilesTo 'a: "x\ty"', a: 'x\ty'
 
+  it 'parses simple regular expressions', ->
+    compilesTo 'a: /^[a-d]*/g', a: /^[a-d]*/g
+
+  it 'parses complex multi-line regular expressions', ->
+    compilesTo '''
+      syntax:
+        identifier: /\\b[a-z_][a-z_0-9]*\\b/i
+        operator: /// ^ (
+          ?: [-=]>             # function
+           | [-+*/%<>&|^!?=]=  # compound assign / compare
+           | >>>=?             # zero-fill right shift
+           | ([-+:])           # doubles
+           | ([&|<>])          # logic / shift
+           | \\?\\.            # soak access
+           | \\.{2,3}          # range or splat
+        ) ///
+    ''', {
+      syntax:
+        identifier: /\b[a-z_][a-z_0-9]*\b/i
+        operator: /// ^ (
+          ?: [-=]>             # function
+           | [-+*/%<>&|^!?=]=  # compound assign / compare
+           | >>>=?             # zero-fill right shift
+           | ([-+:])           # doubles
+           | ([&|<>])          # logic / shift
+           | \?\.              # soak access
+           | \.{2,3}           # range or splat
+        ) ///
+    }
+
   it 'parses nested objects', ->
     compilesTo(
       """
