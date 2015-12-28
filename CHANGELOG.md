@@ -1,3 +1,9 @@
+### 1.3.1
+
+* chore: Move to nlm for publishing - **[@jkrems](https://github.com/jkrems)** [#50](https://github.com/groupon/cson-parser/pull/50)
+  - [`3c704a4`](https://github.com/groupon/cson-parser/commit/3c704a4e796b6d997a4aea499ac7d85bfe9fffe6) **chore:** Move to nlm for publishing
+
+
 1.3.0
 -----
 * Add support for regular expressions - @jkrems
