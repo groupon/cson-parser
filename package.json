@@ -2,43 +2,50 @@
   "name": "cson-parser",
   "version": "1.3.0",
   "description": "Safe parsing of CSON files",
+  "license": "BSD-3-Clause",
   "main": "lib/cson-parser.js",
+  "homepage": "https://github.com/groupon/cson-parser",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/groupon/cson-parser"
+  },
+  "bugs": "https://github.com/groupon/cson-parser/issues",
+  "scripts": {
+    "build": "rm -rf lib && coffee --no-header -cbo lib src",
+    "pretest": "npm run build",
+    "test": "mocha",
+    "posttest": "nlm verify",
+    "watch": "coffee --no-header -wcbo lib src & nodemon -w lib -w test -e coffee,js,json -x \"mocha\""
+  },
+  "nlm": {
+    "license": {
+      "files": [
+        "src"
+      ]
+    }
+  },
+  "dependencies": {
+    "coffee-script": "^1.10.0"
+  },
+  "devDependencies": {
+    "assertive": "^2.0.0",
+    "mocha": "^2.0.0",
+    "nlm": "^2.0.0",
+    "nodemon": "^1.0.0"
+  },
+  "author": {
+    "name": "Groupon",
+    "email": "opensource@groupon.com"
+  },
   "keywords": [
     "cson",
     "parser"
   ],
-  "license": "BSD-2-Clause",
-  "scripts": {
-    "build": "npub prep && coffee -cbo lib src",
-    "prepublish": "rm -rf lib && npm run build",
-    "pretest": "npm run build",
-    "test": "mocha",
-    "posttest": "npub verify"
-  },
-  "author": {
-    "name": "Jan Krems",
-    "email": "<jan.krems@groupon.com>"
-  },
-  "devDependencies": {
-    "assertive": "^1.4.0",
-    "mocha": "^2.0.0",
-    "npub": "^2.0.0"
-  },
-  "dependencies": {
-    "coffee-script": "^1.9.0"
-  },
+  "files": [
+    "*.js",
+    "lib"
+  ],
   "publishConfig": {
-    "registry": "https://registry.npmjs.org",
-    "license": {
-      "exclude": [
-        "lib",
-        "test"
-      ]
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/groupon/cson-parser.git"
-  },
-  "bugs": "https://github.com/groupon/cson-parser/issues"
+    "registry": "https://registry.npmjs.org"
+  }
 }
