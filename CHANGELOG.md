@@ -1,3 +1,9 @@
+### 1.3.2
+
+* Parser no longer requires support for constructor.name - **[@jkrems](https://github.com/jkrems)** [#52](https://github.com/groupon/cson-parser/pull/52)
+  - [`c5591b3`](https://github.com/groupon/cson-parser/commit/c5591b3a8ce0ba88a3e7738f940263ef053e7145) **fix:** Handle missing fn.name
+
+
 ### 1.3.1
 
 * chore: Move to nlm for publishing - **[@jkrems](https://github.com/jkrems)** [#50](https://github.com/groupon/cson-parser/pull/50)
