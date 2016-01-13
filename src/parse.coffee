@@ -36,8 +36,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 defaultReviver = (key, value) -> value
 
+getFunctionNameIE = (fn) ->
+  # fn.name is only standard in ES2015+ and won't work in IE
+  # This takes the source of the function and extracts the name,
+  # e.g. 'function fooBar ()' becomes fooBar.
+  csNode.constructor.toString()
+    .match(/^function\s*([^( ]+)/)[1]
+
 nodeTypeString = (csNode) ->
-  csNode.constructor.name
+  csNode.constructor.name ? getFunctionNameIE(csNode.constructor)
 
 syntaxErrorMessage = (csNode, msg) ->
   {
