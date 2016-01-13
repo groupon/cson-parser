@@ -37,7 +37,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 defaultReviver = (key, value) -> value
 
 nodeTypeString = (csNode) ->
-  csNode.constructor.name
+  unless csNode.constructor.name == undefined
+    csNode.constructor.name
+  else
+    str = csNode.constructor.toString()
+    str.match(/^function\s*([^( ]+)/)[1]
 
 syntaxErrorMessage = (csNode, msg) ->
   {
