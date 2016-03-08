@@ -1,3 +1,9 @@
+### 1.3.3
+
+* Apply latest nlm generator - **[@i-tier-bot](https://github.com/i-tier-bot)** [#55](https://github.com/groupon/cson-parser/pull/55)
+  - [`9905e06`](https://github.com/groupon/cson-parser/commit/9905e064f85f2cad7c656821195ea4afcd37f11f) **chore:** Apply latest nlm generator
+
+
 ### 1.3.2
 
 * Parser no longer requires support for constructor.name - **[@jkrems](https://github.com/jkrems)** [#52](https://github.com/groupon/cson-parser/pull/52)
