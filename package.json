@@ -9,7 +9,9 @@
     "type": "git",
     "url": "git+ssh://git@github.com/groupon/cson-parser"
   },
-  "bugs": "https://github.com/groupon/cson-parser/issues",
+  "bugs": {
+    "url": "https://github.com/groupon/cson-parser/issues"
+  },
   "scripts": {
     "build": "rm -rf lib && coffee --no-header -cbo lib src",
     "pretest": "npm run build",
