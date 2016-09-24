@@ -83,12 +83,15 @@ parse = (source, reviver = defaultReviver) ->
     Value: (node) ->
       transformNode node.base
 
-    Bool: (node) ->
+    Bool: (node) -> # coffee-script@1.10.0
       node.val == 'true'
+    BooleanLiteral: (node) -> # coffee-script@1.11.0
+      node.value == 'true'
 
-    Null: -> null
+    Null: -> null # coffee-script@1.10.0
+    NullLiteral: -> null # coffee-script@1.11.0
 
-    Literal: (node) ->
+    Literal: (node) -> # coffee-script@1.10.0
       {value} = node
       try
         switch value.charAt 0
@@ -97,6 +100,12 @@ parse = (source, reviver = defaultReviver) ->
           else JSON.parse value
       catch err
         throw new SyntaxError syntaxErrorMessage(node, err.message)
+    NumberLiteral: (node) -> # coffee-script@1.11.0
+      Number(node.value)
+    StringLiteral: (node) -> # coffee-script@1.11.0
+      parseStringLiteral node.value
+    RegexLiteral: (node) -> # coffee-script@1.11.0
+      parseRegExpLiteral node.value
 
     Arr: (node) ->
       node.objects.map transformNode

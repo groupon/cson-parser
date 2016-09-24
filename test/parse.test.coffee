@@ -43,7 +43,7 @@ describe 'CSON.parse', ->
     err = assert.throws ->
       CSON.parse 'undefined'
 
-    assert.equal 'Syntax error on line 1, column 1: Unexpected Undefined', err.message
+    assert.match /^Syntax error on line 1, column 1: Unexpected Undefined/, err.message
 
   it 'allows line comments', ->
     compilesTo 'true # line comment', true
@@ -83,20 +83,20 @@ describe 'CSON.parse', ->
   it 'does not allow referencing variables', ->
     err = assert.throws ->
       CSON.parse 'a: foo'
-    assert.equal 'Syntax error on line 1, column 4: Unexpected token o', err.message
+    assert.match /Syntax error on line 1, column 4: Unexpected (token o|IdentifierLiteral)/, err.message
 
     err = assert.throws ->
       CSON.parse 'a: process.env.NODE_ENV'
-    assert.equal 'Syntax error on line 1, column 4: Unexpected token p', err.message
+    assert.match /Syntax error on line 1, column 4: Unexpected (token p|IdentifierLiteral)/, err.message
 
   it 'does not allow Infinity or -Infinity', ->
     err = assert.throws ->
       CSON.parse 'a: Infinity'
-    assert.equal 'Syntax error on line 1, column 4: Unexpected token I', err.message
+    assert.match /^Syntax error on line 1, column 4: Unexpected (token I|InfinityLiteral)/, err.message
 
     err = assert.throws ->
       CSON.parse 'a: -Infinity'
-    assert.equal 'Syntax error on line 1, column 5: Unexpected token I', err.message
+    assert.match /Syntax error on line 1, column 5: Unexpected (token I|InfinityLiteral)/, err.message
 
   it 'does allow simple mathematical operations', ->
     compilesTo '(2 + 3) * 4', ((2 + 3) * 4)
@@ -163,11 +163,11 @@ describe 'CSON.parse', ->
   it 'parses nested objects in arrays', ->
     compilesTo(
       """
-      o: 
+      o:
         [
                   a: 'x'
                   b: 'y'
-                  c: 
+                  c:
                       d: 'z'
             ,
                   a: 'x'
