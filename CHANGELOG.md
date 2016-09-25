@@ -1,3 +1,9 @@
+### 1.3.4
+
+* Compatible with coffee-script 1.11.0 - **[@jkrems](https://github.com/jkrems)** [#57](https://github.com/groupon/cson-parser/pull/57)
+  - [`ed54c9a`](https://github.com/groupon/cson-parser/commit/ed54c9a89b3afb933c2eee1281e17fd6d78e8dba) **fix:** Compatible with coffee-script 1.11.0 - see: [#56](https://github.com/groupon/cson-parser/issues/56)
+
+
 ### 1.3.3
 
 * Apply latest nlm generator - **[@i-tier-bot](https://github.com/i-tier-bot)** [#55](https://github.com/groupon/cson-parser/pull/55)
