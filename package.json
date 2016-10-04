@@ -27,7 +27,8 @@
     }
   },
   "dependencies": {
-    "coffee-script": "^1.10.0"
+    "coffee-script": "^1.10.0",
+    "parse-json": "~2.2.0"
   },
   "devDependencies": {
     "assertive": "^2.0.0",
