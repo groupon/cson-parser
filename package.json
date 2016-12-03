@@ -20,7 +20,7 @@
   "nlm": {
     "license": {
       "files": [
-        "src"
+        "lib"
       ]
     }
   },
