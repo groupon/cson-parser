@@ -31,9 +31,8 @@
   },
   "devDependencies": {
     "assertive": "^2.0.0",
-    "mocha": "^2.0.0",
-    "nlm": "^2.0.0",
-    "nodemon": "^1.0.0"
+    "mocha": "^3.0.0",
+    "nlm": "^3.0.0"
   },
   "author": {
     "name": "Groupon",
