@@ -1,3 +1,11 @@
+### 1.3.5
+
+* Modernize library - **[@jkrems](https://github.com/jkrems)** [#60](https://github.com/groupon/cson-parser/pull/60)
+  - [`dea5fac`](https://github.com/groupon/cson-parser/commit/dea5facb26bb84dcab01c34909d9b59d6c70bd76) **chore:** Bump devDependencies
+  - [`727c1f6`](https://github.com/groupon/cson-parser/commit/727c1f6c79954e3f54f786027e8da5b6f958ca02) **refactor:** Port to JavaScript
+  - [`1c29287`](https://github.com/groupon/cson-parser/commit/1c29287034f3dbafed72f2e9b76655756574260f) **chore:** Fix license header filter
+
+
 ### 1.3.4
 
 * Compatible with coffee-script 1.11.0 - **[@jkrems](https://github.com/jkrems)** [#57](https://github.com/groupon/cson-parser/pull/57)
