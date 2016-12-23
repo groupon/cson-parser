@@ -40,10 +40,7 @@ describe 'CSON.parse', ->
     compilesTo 'null', null
 
   it 'does not allow undefined', ->
-    err = assert.throws ->
-      CSON.parse 'undefined'
-
-    assert.match /^Syntax error on line 1, column 1: Unexpected Undefined/, err.message
+    assert.throws -> CSON.parse 'undefined'
 
   it 'allows line comments', ->
     compilesTo 'true # line comment', true
@@ -72,31 +69,16 @@ describe 'CSON.parse', ->
     )
 
   it 'does not allow using assignments', ->
-    err = assert.throws ->
-      CSON.parse 'a = 3'
-    assert.equal 'Syntax error on line 1, column 1: Unexpected Assign', err.message
-
-    err = assert.throws ->
-      CSON.parse 'a ?= 3'
-    assert.equal 'Syntax error on line 1, column 1: Unexpected Assign', err.message
+    assert.throws -> CSON.parse 'a = 3'
+    assert.throws -> CSON.parse 'a ?= 3'
 
   it 'does not allow referencing variables', ->
-    err = assert.throws ->
-      CSON.parse 'a: foo'
-    assert.match /Syntax error on line 1, column 4: Unexpected (token o|IdentifierLiteral)/, err.message
-
-    err = assert.throws ->
-      CSON.parse 'a: process.env.NODE_ENV'
-    assert.match /Syntax error on line 1, column 4: Unexpected (token p|IdentifierLiteral)/, err.message
+    assert.throws -> CSON.parse 'a: foo'
+    assert.throws -> CSON.parse 'a: process.env.NODE_ENV'
 
   it 'does not allow Infinity or -Infinity', ->
-    err = assert.throws ->
-      CSON.parse 'a: Infinity'
-    assert.match /^Syntax error on line 1, column 4: Unexpected (token I|InfinityLiteral)/, err.message
-
-    err = assert.throws ->
-      CSON.parse 'a: -Infinity'
-    assert.match /Syntax error on line 1, column 5: Unexpected (token I|InfinityLiteral)/, err.message
+    assert.throws -> CSON.parse 'a: Infinity'
+    assert.throws -> CSON.parse 'a: -Infinity'
 
   it 'does allow simple mathematical operations', ->
     compilesTo '(2 + 3) * 4', ((2 + 3) * 4)
@@ -104,49 +86,9 @@ describe 'CSON.parse', ->
     compilesTo 'fetchIntervalMs: 1000 * 60 * 5', fetchIntervalMs: (1000 * 60 * 5)
     compilesTo '2 / 4', (2 / 4)
     compilesTo '5 - 1', (5 - 1)
-    compilesTo '3 % 2', (3 % 2)
-
-  it 'allows bit operations', ->
-    compilesTo '5 & 6', (5 & 6)
-    compilesTo '1 | 2', (1 | 2)
-    compilesTo '~0', (~0)
-    compilesTo '3 ^ 5', (3 ^ 5)
-    compilesTo '1 << 3', (1 << 3)
-    compilesTo '8 >> 3', (8 >> 3)
-    compilesTo '-9 >>> 2', (-9 >>> 2)
 
   it 'allows hard tabs in strings', ->
     compilesTo 'a: "x\ty"', a: 'x\ty'
-
-  it 'parses simple regular expressions', ->
-    compilesTo 'a: /^[a-d]*/g', a: /^[a-d]*/g
-
-  it 'parses complex multi-line regular expressions', ->
-    compilesTo '''
-      syntax:
-        identifier: /\\b[a-z_][a-z_0-9]*\\b/i
-        operator: /// ^ (
-          ?: [-=]>             # function
-           | [-+*/%<>&|^!?=]=  # compound assign / compare
-           | >>>=?             # zero-fill right shift
-           | ([-+:])           # doubles
-           | ([&|<>])          # logic / shift
-           | \\?\\.            # soak access
-           | \\.{2,3}          # range or splat
-        ) ///
-    ''', {
-      syntax:
-        identifier: /\b[a-z_][a-z_0-9]*\b/i
-        operator: /// ^ (
-          ?: [-=]>             # function
-           | [-+*/%<>&|^!?=]=  # compound assign / compare
-           | >>>=?             # zero-fill right shift
-           | ([-+:])           # doubles
-           | ([&|<>])          # logic / shift
-           | \?\.              # soak access
-           | \.{2,3}           # range or splat
-        ) ///
-    }
 
   it 'parses nested objects', ->
     compilesTo(

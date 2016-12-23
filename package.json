@@ -13,7 +13,8 @@
     "url": "https://github.com/groupon/cson-parser/issues"
   },
   "scripts": {
-    "pretest": "eslint lib test",
+    "build": "(echo '/* eslint-disable */' ; pegjs -o - src/cson.pegjs) > lib/parser_fast.js && (echo '/* eslint-disable */' ; pegjs -O size -o - src/cson.pegjs) > lib/parser.js",
+    "pretest": "npm run build && eslint lib test",
     "test": "mocha",
     "posttest": "nlm verify"
   },
@@ -34,7 +35,8 @@
     "eslint-plugin-import": "^1.6.1",
     "eslint-plugin-node": "^2.0.0",
     "mocha": "^3.1.2",
-    "nlm": "^3.0.0"
+    "nlm": "^3.0.0",
+    "pegjs": "^0.10.0"
   },
   "author": {
     "name": "Groupon",

@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+//
+// check-parse: compare objects parsed by old vs new code
+// TODO: nuke this when confirmed
+//
+
+'use strict';
+
+if (process.argv.length !== 3) throw 'usage: check-parse file.cson';
+
+var cp = require('./');
+var fs = require('fs');
+var cson = fs.readFileSync(process.argv[2], 'utf8');
+var cur = JSON.stringify(cp.parse(cson), null, '  ');
+var old = JSON.stringify(cp.parseOld(cson), null, '  ');
+if (cur !== old) {
+  console.log('current: \n' + cur + '\n\nold:\n' + old + '\n');
+  process.exit(1);
+}
