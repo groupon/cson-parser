@@ -1,3 +1,19 @@
+### 2.0.0
+
+#### Breaking Changes
+
+The default used to be double quotes.
+
+See the discussion here: https://github.com/groupon/cson-parser/issues/62
+
+*See: [`0d1679f`](https://github.com/groupon/cson-parser/commit/0d1679fb5ada081c428e23b7fb3df2c7093b6c11)*
+
+#### Commits
+
+* Make single quotes the default in stringify - **[@samestep](https://github.com/samestep)** [#63](https://github.com/groupon/cson-parser/pull/63)
+  - [`0d1679f`](https://github.com/groupon/cson-parser/commit/0d1679fb5ada081c428e23b7fb3df2c7093b6c11) **feat:** Make single quotes the default in stringify
+
+
 ### 1.3.5
 
 * Modernize library - **[@jkrems](https://github.com/jkrems)** [#60](https://github.com/groupon/cson-parser/pull/60)
