@@ -24,7 +24,7 @@ describe 'CSON.stringify', ->
     equal '1.2e+90', cson 1.2e+90
 
   it 'handles single-line strings', ->
-    equal '"hello!"', cson 'hello!'
+    equal "'hello!'", cson 'hello!'
 
   it 'handles multi-line strings', ->
     equal """
@@ -60,7 +60,7 @@ describe 'CSON.stringify', ->
         null
         []
         {
-          a: "str"
+          a: 'str'
         }
         {}
       ]
@@ -68,17 +68,17 @@ describe 'CSON.stringify', ->
 
   it 'handles arrays (with 0 indentation)', ->
     equal '''
-    [[1],null,[],{a:"str"},{}]
+    [[1],null,[],{a:'str'},{}]
     ''', cson [ [1], null, [], a: 'str', {} ], null, 0
 
   it 'handles objects', ->
     equal '''
-      "": "empty"
-      "non\\nidentifier": true
+      '': 'empty'
+      'non\\nidentifier': true
       default: false
       emptyObject: {}
       nested:
-        string: "too"
+        string: 'too'
       array: [
         {}
         []
@@ -99,7 +99,7 @@ describe 'CSON.stringify', ->
 
   it 'handles objects (with 0 indentation)', ->
     equal '''
-    "":"empty","non\\nidentifier":true,default:false,nested:{string:"too"},array:[{},[]]
+    '':'empty','non\\nidentifier':true,default:false,nested:{string:'too'},array:[{},[]]
     ''', cson {
       '': 'empty'
       "non\nidentifier": true
@@ -133,7 +133,7 @@ describe 'CSON.stringify', ->
   it 'lets people that really want to indent with tabs', ->
     equal '''
       x:
-      \t\t"super-tabby": true
+      \t\t'super-tabby': true
     ''', cson { x: { 'super-tabby': yes } }, null, '\t\t'
 
   it 'handles indentation by NaN', ->
