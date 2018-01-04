@@ -1,8 +1,6 @@
 {
+  "extends": "groupon/node4",
   "env": {
     "mocha": true
-  },
-  "rules": {
-    "func-names": 0
   }
 }
