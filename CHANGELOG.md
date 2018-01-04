@@ -1,3 +1,9 @@
+### 2.0.1
+
+* Apply latest nlm generator - **[@markowsiak](https://github.com/markowsiak)** [#69](https://github.com/groupon/cson-parser/pull/69)
+  - [`42a70eb`](https://github.com/groupon/cson-parser/commit/42a70eb38e5e3475a89ad4b67ebad34b1c3a1dc6) **chore:** Apply latest nlm generator
+
+
 ### 2.0.0
 
 #### Breaking Changes
