@@ -25,7 +25,7 @@
     }
   },
   "dependencies": {
-    "coffee-script": "^1.10.0"
+    "coffeescript": "^1.10.0"
   },
   "devDependencies": {
     "assertive": "^2.1.0",
