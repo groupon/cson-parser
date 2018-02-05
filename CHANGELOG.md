@@ -1,3 +1,20 @@
+### 3.0.0
+
+#### Breaking Changes
+
+Since coffeescript contains a conflicting `./bin`
+symlink for the `coffee` command line tool, do *not* install this
+version of `cson-parser` while you still have `coffee-script`
+anywhere in your dependency tree.
+
+*See: [`1d49f3b`](https://github.com/groupon/cson-parser/commit/1d49f3b648a4c475c44f2789d0b54b316d9c1cd8)*
+
+#### Commits
+
+* chore: Use coffeescript instead of coffee-script - **[@jkrems](https://github.com/jkrems)** [#70](https://github.com/groupon/cson-parser/pull/70)
+  - [`1d49f3b`](https://github.com/groupon/cson-parser/commit/1d49f3b648a4c475c44f2789d0b54b316d9c1cd8) **chore:** Use coffeescript instead of coffee-script - see: [#67](https://github.com/groupon/cson-parser/issues/67)
+
+
 ### 2.0.1
 
 * Apply latest nlm generator - **[@markowsiak](https://github.com/markowsiak)** [#69](https://github.com/groupon/cson-parser/pull/69)
