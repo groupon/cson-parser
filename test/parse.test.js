@@ -10,10 +10,10 @@ function compilesTo(source, expected) {
   assert.deepEqual(expected, CSON.parse(source));
 }
 
-describe('CSON.parse', function() {
+describe('CSON.parse', () => {
   it('parses an empty object', () => compilesTo('{}', {}));
 
-  it('parses boolean values', function() {
+  it('parses boolean values', () => {
     compilesTo('true', true);
     compilesTo('yes', true);
     compilesTo('on', true);
@@ -22,13 +22,13 @@ describe('CSON.parse', function() {
     return compilesTo('off', false);
   });
 
-  it('parses numbers', function() {
+  it('parses numbers', () => {
     compilesTo('0.42', 0.42);
     compilesTo('42', 42);
     return compilesTo('1.2e+4', 1.2e4);
   });
 
-  it('parses arrays', function() {
+  it('parses arrays', () => {
     compilesTo('[ 1, 2, a: "str" ]', [1, 2, { a: 'str' }]);
     return compilesTo(
       `\
@@ -44,7 +44,7 @@ describe('CSON.parse', function() {
 
   it('parses null', () => compilesTo('null', null));
 
-  it('does not allow undefined', function() {
+  it('does not allow undefined', () => {
     const err = assert.throws(() => CSON.parse('undefined'));
 
     assert.match(
@@ -78,7 +78,7 @@ string
       `Some long${os.EOL}string`
     ));
 
-  it('does not allow using assignments', function() {
+  it('does not allow using assignments', () => {
     let err = assert.throws(() => CSON.parse('a = 3'));
     assert.equal(
       'Syntax error on line 1, column 1: Unexpected Assign',
@@ -92,7 +92,7 @@ string
     );
   });
 
-  it('does not allow referencing variables', function() {
+  it('does not allow referencing variables', () => {
     let err = assert.throws(() => CSON.parse('a: foo'));
     assert.match(
       /Syntax error on line 1, column 4: Unexpected (token o|IdentifierLiteral)/,
@@ -106,7 +106,7 @@ string
     );
   });
 
-  it('does not allow Infinity or -Infinity', function() {
+  it('does not allow Infinity or -Infinity', () => {
     let err = assert.throws(() => CSON.parse('a: Infinity'));
     assert.match(
       /^Syntax error on line 1, column 4: Unexpected (token I|InfinityLiteral)/,
@@ -120,7 +120,7 @@ string
     );
   });
 
-  it('does allow simple mathematical operations', function() {
+  it('does allow simple mathematical operations', () => {
     compilesTo('(2 + 3) * 4', (2 + 3) * 4);
     compilesTo('2 + 3 * 4', 2 + 3 * 4);
     compilesTo('fetchIntervalMs: 1000 * 60 * 5', {
@@ -131,7 +131,7 @@ string
     return compilesTo('3 % 2', 3 % 2);
   });
 
-  it('allows bit operations', function() {
+  it('allows bit operations', () => {
     compilesTo('5 & 6', 5 & 6);
     compilesTo('1 | 2', 1 | 2);
     compilesTo('~0', ~0);
@@ -209,13 +209,13 @@ o:
       }
     ));
 
-  describe('reviver functions', function() {
+  describe('reviver functions', () => {
     let expected;
     let source;
     let reviver;
 
     let calls = (expected = source = reviver = null);
-    beforeEach(function() {
+    beforeEach(() => {
       calls = [];
       reviver = function(key, value) {
         // Test: called on parent object
@@ -243,13 +243,13 @@ o:
       };
     });
 
-    it('supports them', function() {
+    it('supports them', () => {
       assert.deepEqual(expected, CSON.parse(source, reviver));
       // See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse
       assert.deepEqual(calls, ['1', '2', '4', '6', '5', '3', '']);
     });
 
-    it('works just like JSON.parse', function() {
+    it('works just like JSON.parse', () => {
       assert.deepEqual(expected, JSON.parse(source, reviver));
       // See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse
       assert.deepEqual(calls, ['1', '2', '4', '6', '5', '3', '']);

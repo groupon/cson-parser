@@ -12,10 +12,10 @@ function cson(obj, visitor, space) {
   return CSON.stringify(obj, visitor, space);
 }
 
-describe('CSON.stringify', function() {
+describe('CSON.stringify', () => {
   it('handles null', () => equal('null', cson(null)));
 
-  it('handles boolean values', function() {
+  it('handles boolean values', () => {
     equal('true', cson(true));
     return equal('false', cson(false));
   });
@@ -24,7 +24,7 @@ describe('CSON.stringify', function() {
 
   it('handles the empty array', () => equal('[]', cson([])));
 
-  it('handles numbers', function() {
+  it('handles numbers', () => {
     equal('0.42', cson(0.42));
     equal('42', cson(42));
     return equal('1.2e+90', cson(1.2e90));
@@ -61,7 +61,7 @@ and I have a sneaky ''' in here, too\
       )
     ));
 
-  it('handles multi-line strings w/ backslash', function() {
+  it('handles multi-line strings w/ backslash', () => {
     const test = '\\\n\\';
     const expected = "'''\n  \\\\\n  \\\\\n'''";
     equal(test, CSON.parse(cson(test)));
@@ -140,7 +140,7 @@ array: [
       )
     ));
 
-  it('handles NaN and +/-Infinity like JSON.stringify does', function() {
+  it('handles NaN and +/-Infinity like JSON.stringify does', () => {
     equal('null', cson(NaN));
     equal('null', cson(+Infinity));
     return equal('null', cson(-Infinity));
@@ -150,7 +150,7 @@ array: [
     equal(undefined, cson(undefined)));
 
   it('handles functions like JSON.stringify does', () =>
-    equal(undefined, cson(function() {})));
+    equal(undefined, cson(() => {})));
 
   it('accepts no more than ten indentation steps, just like JSON.stringify', () =>
     equal(
@@ -189,7 +189,8 @@ ecma-262strange: true\
       `\
 keep: 1\
 `,
-      cson({ filter: 'me', keep: 1 }, function(k, v) {
+      // eslint-disable-next-line consistent-return
+      cson({ filter: 'me', keep: 1 }, (k, v) => {
         if (typeof v !== 'string') {
           return v;
         }
