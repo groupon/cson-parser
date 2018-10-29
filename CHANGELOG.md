@@ -1,3 +1,19 @@
+### 4.0.0
+
+#### Breaking Changes
+
+This removes support for Node 4 as well as for bundling the library for the browser without compilation.
+
+*See: [`24a8ba8`](https://github.com/groupon/cson-parser/commit/24a8ba813a6d494a0a00d52e43deeb00c42d090b)*
+
+#### Commits
+
+* Fix audited packages, support Node 10, drop support for Node 4 - **[@markowsiak](https://github.com/markowsiak)** [#73](https://github.com/groupon/cson-parser/pull/73)
+  - [`66756aa`](https://github.com/groupon/cson-parser/commit/66756aa129c8a63a2ed5fa8514f4d63de3675d3f) **chore:** update packages from audit
+  - [`24a8ba8`](https://github.com/groupon/cson-parser/commit/24a8ba813a6d494a0a00d52e43deeb00c42d090b) **chore:** support node 10, drop support node 4
+  - [`16800e3`](https://github.com/groupon/cson-parser/commit/16800e3517885a8d3c670bfbdb2206109e6f40f6) **chore:** use npm 6
+
+
 ### 3.0.0
 
 #### Breaking Changes
