@@ -46,6 +46,20 @@ and I have a sneaky ''' in here, too\
 `)
     ));
 
+  it('handles multi-line strings with quad quotes', () =>
+    equal(
+      `\
+'''
+  I am your average multi-line string,
+  and I have a sneaky \\''\\'' in here, too
+'''\
+`,
+      cson(`\
+I am your average multi-line string,
+and I have a sneaky '''' in here, too\
+`)
+    ));
+
   it('handles multi-line strings (with 0 indentation)', () =>
     equal(
       `\
