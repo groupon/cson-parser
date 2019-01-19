@@ -1,3 +1,9 @@
+### 4.0.1
+
+* insert backslash to double quotes instead of triple quotes - **[@richardtks](https://github.com/richardtks)** [#76](https://github.com/groupon/cson-parser/pull/76)
+  - [`b0229a6`](https://github.com/groupon/cson-parser/commit/b0229a6e6442fdc15e9af03ff520681f0332642d) **fix:** replace double quotes instead triple quotes
+
+
 ### 4.0.0
 
 #### Breaking Changes
