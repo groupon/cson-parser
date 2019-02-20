@@ -1,3 +1,9 @@
+### 4.0.2
+
+* chore: Remove yarn check that breaks people - **[@jkrems](https://github.com/jkrems)** [#77](https://github.com/groupon/cson-parser/pull/77)
+  - [`4938d26`](https://github.com/groupon/cson-parser/commit/4938d2602c739cc53e2581f090e99ace7167bf24) **chore:** Remove yarn check that breaks people - see: [groupon//github.com/groupon/cson-parser/issues/74#issuecomment-438339958](https://github.com/groupon//github.com/groupon/cson-parser/issues/74/issues/issuecomment-438339958)
+
+
 ### 4.0.1
 
 * insert backslash to double quotes instead of triple quotes - **[@richardtks](https://github.com/richardtks)** [#76](https://github.com/groupon/cson-parser/pull/76)
