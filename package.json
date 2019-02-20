@@ -18,7 +18,6 @@
     "posttest": "nlm verify"
   },
   "engines": {
-    "yarn": "0.0.0",
     "npm": "^6.0.0"
   },
   "nlm": {
