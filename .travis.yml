@@ -1,14 +1,14 @@
 language: node_js
 node_js:
-  - 6.14.3
-  - 8.11.3
-  - 10.5.0
+  - 8
+  - 10
+  - 12
 deploy:
   - provider: script
-    script: ./node_modules/.bin/nlm release
+    script: npx nlm release
     skip_cleanup: true
     'on':
       branch: master
-      node: 10.5.0
+      node: 12
 before_install:
   - npm i -g npm@^6
