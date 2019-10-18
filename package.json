@@ -33,6 +33,7 @@
       ]
     }
   },
+  "types": "lib/typedefs.d.ts",
   "dependencies": {
     "coffeescript": "^1.10.0"
   },
