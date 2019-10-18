@@ -1,3 +1,14 @@
+### 4.0.3
+
+* add type declarations - **[@dbushong](https://github.com/dbushong)** [#82](https://github.com/groupon/cson-parser/pull/82)
+  - [`7ec3754`](https://github.com/groupon/cson-parser/commit/7ec375418c15c23bfc4c291fdb0f3b05e34b85bb) **chore:** upgrade deps & syntax
+  - [`4e337d2`](https://github.com/groupon/cson-parser/commit/4e337d29e5329daa105a57c601677194c8b2bc28) **chore:** npm audit fix
+  - [`13884e5`](https://github.com/groupon/cson-parser/commit/13884e59fe98f71d0fe5647185b5b716a93d2252) **fix:** add type declarations
+  - [`3288839`](https://github.com/groupon/cson-parser/commit/3288839413a06cfae03aea854c0969d444ef2b74) **chore:** upgrade assertive
+  - [`e0bfc47`](https://github.com/groupon/cson-parser/commit/e0bfc47b10b9a0969ab5d8bc98c6a8d4579ab44b) **test:** fix tests on node 12
+  - [`b7c596d`](https://github.com/groupon/cson-parser/commit/b7c596d5a841ec7aaf822a5e599e048b7b15339c) **chore:** remove travis npm6 install
+
+
 ### 4.0.2
 
 * chore: Remove yarn check that breaks people - **[@jkrems](https://github.com/jkrems)** [#77](https://github.com/groupon/cson-parser/pull/77)
