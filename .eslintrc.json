@@ -1,0 +1,28 @@
+{
+  "extends": "groupon/node8",
+  "overrides": [
+    {
+      "files": "*.mjs",
+      "parserOptions": {
+        "sourceType": "module"
+      },
+      "rules": {
+        "node/no-unsupported-features": [
+          "error",
+          {
+            "version": 8,
+            "ignores": [
+              "modules"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": "*.test.js",
+      "env": {
+        "mocha": true
+      }
+    }
+  ]
+}
