@@ -1,3 +1,9 @@
+### 4.0.4
+
+* fix: address ltgm.com & remove superfluous arguments - **[@aaarichter](https://github.com/aaarichter)** [#83](https://github.com/groupon/cson-parser/pull/83)
+  - [`feb4690`](https://github.com/groupon/cson-parser/commit/feb4690ce9cde04392d51441b8c606689106d66e) **fix:** address ltgm.com & remove superfluous arguments
+
+
 ### 4.0.3
 
 * add type declarations - **[@dbushong](https://github.com/dbushong)** [#82](https://github.com/groupon/cson-parser/pull/82)
