@@ -1,3 +1,11 @@
+### 4.0.5
+
+* chore(deps): bump lodash from 4.17.15 to 4.17.19 - **[@dependabot[bot]](https://github.com/apps/dependabot)** [#85](https://github.com/groupon/cson-parser/pull/85)
+  - [`d67a0cc`](https://github.com/groupon/cson-parser/commit/d67a0cc7c47fe4d7baf55e83cd7bcd8cc9edc8cb) **chore:** bump lodash from 4.17.15 to 4.17.19 - see: [4](- [Commits](https://github.com/lodash/lodash/compare/4)
+* chore(deps): bump acorn from 7.1.0 to 7.1.1 - **[@dependabot[bot]](https://github.com/apps/dependabot)** [#84](https://github.com/groupon/cson-parser/pull/84)
+  - [`b834a15`](https://github.com/groupon/cson-parser/commit/b834a15a2a7233d8d314d4a2a782047e327b1d2b) **chore:** bump acorn from 7.1.0 to 7.1.1 - see: [7](- [Commits](https://github.com/acornjs/acorn/compare/7)
+
+
 ### 4.0.4
 
 * fix: address ltgm.com & remove superfluous arguments - **[@aaarichter](https://github.com/aaarichter)** [#83](https://github.com/groupon/cson-parser/pull/83)
