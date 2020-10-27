@@ -20,11 +20,10 @@
     "posttest": "npm-run-all posttest:*",
     "pretest:lint": "npm-run-all lint:*",
     "posttest:nlm": "nlm verify",
-    "test:unit": "mocha"
+    "test:unit": "nyc mocha"
   },
   "engines": {
-    "node": ">=8",
-    "npm": "^6.0.0"
+    "node": ">=10.13"
   },
   "nlm": {
     "license": {
@@ -39,16 +38,17 @@
   },
   "devDependencies": {
     "assertive": "^3.1.0",
-    "eslint": "^6.2.1",
-    "eslint-config-groupon": "^7.2.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-mocha": "^6.1.0",
-    "eslint-plugin-node": "^9.1.0",
-    "eslint-plugin-prettier": "^3.1.0",
-    "mocha": "^6.2.0",
-    "nlm": "^3.6.1",
+    "eslint": "^7.12.1",
+    "eslint-config-groupon": "^10.0.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-mocha": "^8.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "mocha": "^8.2.0",
+    "nlm": "^5.1.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^1.18.2"
+    "nyc": "^15.1.0",
+    "prettier": "^2.1.2"
   },
   "author": {
     "name": "Groupon",
