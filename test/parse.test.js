@@ -205,7 +205,10 @@ o:
   ]\
 `,
       {
-        o: [{ a: 'x', b: 'y', c: { d: 'z' } }, { a: 'x', b: 'y' }],
+        o: [
+          { a: 'x', b: 'y', c: { d: 'z' } },
+          { a: 'x', b: 'y' },
+        ],
       }
     ));
 
@@ -217,7 +220,7 @@ o:
     let calls = (expected = source = reviver = null);
     beforeEach(() => {
       calls = [];
-      reviver = function(key, value) {
+      reviver = function (key, value) {
         // Test: called on parent object
         if (key === '4') {
           this.x = 'magic';
@@ -232,9 +235,9 @@ o:
       };
 
       source = JSON.stringify({
-        '1': 1,
-        '2': 2,
-        '3': { '4': 4, '5': { '6': 6 } },
+        1: 1,
+        2: 2,
+        3: { 4: 4, 5: { 6: 6 } },
       });
       expected = {
         1: 2,

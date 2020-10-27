@@ -164,7 +164,10 @@ array: [
     equal(undefined, cson(undefined)));
 
   it('handles functions like JSON.stringify does', () =>
-    equal(undefined, cson(() => {})));
+    equal(
+      undefined,
+      cson(() => {})
+    ));
 
   it('accepts no more than ten indentation steps, just like JSON.stringify', () =>
     equal(
