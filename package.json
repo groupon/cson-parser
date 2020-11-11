@@ -32,6 +32,13 @@
       ]
     }
   },
+  "nyc": {
+    "reporter": [
+      "text",
+      "json-summary",
+      "cobertura"
+    ]
+  },
   "types": "lib/typedefs.d.ts",
   "dependencies": {
     "coffeescript": "^1.12.7"
