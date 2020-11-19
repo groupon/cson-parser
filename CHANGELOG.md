@@ -1,3 +1,10 @@
+### v4.0.6 (2020-11-19)
+
+#### 🏡 Internal
+
+* [#87](https://github.com/groupon/cson-parser/pull/87) chore(deps): update packages & drop node 8 support ([@aaarichter](https://github.com/aaarichter)) 
+
+
 ### 4.0.5
 
 * chore(deps): bump lodash from 4.17.15 to 4.17.19 - **[@dependabot[bot]](https://github.com/apps/dependabot)** [#85](https://github.com/groupon/cson-parser/pull/85)
