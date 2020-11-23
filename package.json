@@ -41,7 +41,7 @@
   },
   "types": "lib/typedefs.d.ts",
   "dependencies": {
-    "coffeescript": "^1.12.7"
+    "coffeescript": "1.12.7"
   },
   "devDependencies": {
     "eslint": "^7.12.1",
