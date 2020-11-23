@@ -1,3 +1,10 @@
+### v4.0.7 (2020-11-23)
+
+#### 🔼 Dependencies
+
+* [#90](https://github.com/groupon/cson-parser/pull/90) chore: freeze coffeescript@1.12.7 ([@aaarichter](https://github.com/aaarichter)) 
+
+
 ### v4.0.6 (2020-11-19)
 
 #### 🏡 Internal
