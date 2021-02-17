@@ -1,3 +1,10 @@
+### v4.0.8 (2021-02-17)
+
+#### 🔼 Dependencies
+
+* [#91](https://github.com/groupon/cson-parser/pull/91) chore(deps): bump ini from 1.3.5 to 1.3.7 ([@dependabot[bot]](https://github.com/apps/dependabot)) 
+
+
 ### v4.0.7 (2020-11-23)
 
 #### 🔼 Dependencies

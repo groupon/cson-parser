@@ -1,6 +1,6 @@
 {
   "name": "cson-parser",
-  "version": "4.0.7",
+  "version": "4.0.8",
   "description": "Safe parsing of CSON files",
   "license": "BSD-3-Clause",
   "main": "lib/cson-parser.js",
