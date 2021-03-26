@@ -1,3 +1,10 @@
+### v4.0.9 (2021-03-26)
+
+#### 🏡 Internal
+
+* [#92](https://github.com/groupon/cson-parser/pull/92) chore: switch to main & update packages ([@aaarichter](https://github.com/aaarichter)) 
+
+
 ### v4.0.8 (2021-02-17)
 
 #### 🔼 Dependencies
