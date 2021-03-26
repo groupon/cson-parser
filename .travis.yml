@@ -8,5 +8,5 @@ deploy:
     script: npx nlm release
     cleanup: true
     'on':
-      branch: master
+      branch: main
       node_js: 14
